@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RedSir - Nuestro Equipo</title>
+  <link rel="stylesheet" href="nosotros.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <img src="/RedSir.jpg" alt="Logo de la empresa" class="logo">
+    <h1>Equipo RedSir</h1>
+    <p>Conocé a los profesionales que hacen posible nuestro trabajo</p>
+
+    <!-- MENÚ -->
+    <nav class="navbar">
+      <ul>
+        <li><a href="RedSir.html">Inicio</a></li>
+        <li><a href="inicio.html">Servicios</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN - TARJETAS DEL EQUIPO -->
+  <main class="container">
+    <div class="card">
+      <img src="codigo.jpg" alt="Foto Miembro 1">
+      <h2>Angeles Rosales</h2>
+      <p>Técnica electrónica. Responsable de la organización del grupo y las programaciones de los sistemas de seguridad.</p>
+    </div>
+
+    <div class="card">
+      <img src="tecnico.webp" alt="Foto Miembro 2">
+      <h2>Esmeralda Marcone</h2>
+      <p>Técnica. Se encarga de la contabilidad de la empresa y realiza la instalación de los sensores.</p>
+    </div>
+
+    <div class="card">
+      <img src="luz.webp" alt="Foto Miembro 3">
+      <h2>Luna Tornquist</h2>
+      <p>Técnica electrónica encargada de las instalaciones de sistemas de iluminarias y de algunas instalaciones eléctricas.</p>
+    </div>
+
+    <div class="card">
+      <img src="marketing.png" alt="Foto Miembro 4">
+      <h2>Naima Pérez</h2>
+      <p>Marketing. Diseña estrategias para conectar con las personas y expandir RedSir.</p>
+    </div>
+
+    <div class="card">
+      <img src="mantenimiento.jpg" alt="Foto Miembro 5">
+      <h2>Gabriel Saires</h2>
+      <p>Técnico. Se encarga del mantenimiento, prioriza la comodidad y la utilidad del cliente en cada instalación.</p>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 RedSir - Todos los derechos reservados</p>
+  </footer>
+
+  <!-- SCRIPT: Efecto de scroll en el menú -->
+  <script>
+    window.addEventListener("scroll", function() {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 20) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  </script>
+
+</body>
+</html>

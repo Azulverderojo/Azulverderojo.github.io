@@ -1,0 +1,109 @@
+/* ====== ESTILOS NOSOTROS ====== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* HEADER */
+header {
+  background: #1a1a1a;
+  color: white;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header .logo {
+  width: 70px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+header h1 {
+  margin: 0.5rem 0 0.2rem 0;
+  font-size: 2rem;
+}
+
+header p {
+  margin: 0;
+  font-size: 1rem;
+  color: #bbb;
+}
+
+/* MENÚ */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: #f8f9fa;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ff4c4c;
+}
+
+/* TARJETAS */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+/* IMÁGENES DE LOS MIEMBROS */
+.card img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid #ff4c4c;
+}
+
+/* NOMBRE DESTACADO */
+.card h2 {
+  margin: 0.5rem 0;
+  font-size: 1.4rem;
+  color: #1a1a1a;
+}
+
+/* DESCRIPCIÓN */
+.card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #1a1a1a;
+  color: white;
+  margin-top: 2rem;
+}
