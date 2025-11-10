@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cámaras de Seguridad - RedSir</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        *{margin:0; padding:0; box-sizing:border-box; color:#eee; font-family:'Arial', sans-serif;}
+        body{background:#111; overflow-x:hidden;}
+
+        /* CANVAS CIRCUITOS */
+        #circuitCanvas{
+            position:fixed;
+            top:0;left:0;
+            width:100vw; height:100vh;
+            z-index:0;
+            pointer-events:none;
+        }
+
+        header{
+            padding:80px 20px 40px;
+            text-align:center;
+            position:relative;
+            z-index:2;
+        }
+        header h1{
+            font-family:'Orbitron', sans-serif;
+            color:#ff0033;
+            text-shadow:0 0 10px #ff003388;
+            font-size:clamp(2.2rem,5vw,3.5rem);
+        }
+
+        nav ul{
+            display:flex;
+            justify-content:center;
+            gap:25px;
+            list-style:none;
+            padding:20px 0;
+            flex-wrap:wrap;
+            z-index:2;
+            position:relative;
+        }
+        nav a{
+            text-decoration:none;
+            color:#eee;
+            padding:8px 15px;
+            border-radius:6px;
+            transition:.3s;
+        }
+        nav a:hover{
+            background:#ff003322;
+            color:#ff0033;
+        }
+
+        main{
+            max-width:1100px;
+            margin:auto;
+            padding:20px;
+            position:relative;
+            z-index:2;
+        }
+
+        .galeria{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:30px;
+            margin-top:50px;
+        }
+
+        .card{
+            background:#1b1b1b;
+            padding:20px;
+            text-align:center;
+            border-radius:15px;
+            border:1px solid #ff003322;
+            transition:.3s;
+        }
+        .card img{
+            width:100%;
+            border-radius:10px;
+            margin-bottom:10px;
+        }
+        .card h3{
+            font-family:'Orbitron', sans-serif;
+            margin-bottom:5px;
+            color:#ff0033;
+        }
+        .card:hover{
+            transform:translateY(-5px);
+            box-shadow:0 0 20px #ff003350;
+        }
+
+        .volver{
+            display:block;
+            width:max-content;
+            margin:60px auto;
+            text-decoration:none;
+            color:#ff0033;
+            background:#ff003322;
+            padding:10px 20px;
+            border-radius:10px;
+            transition:.3s;
+        }
+        .volver:hover{
+            background:#ff0033;
+            color:#111;
+        }
+
+        footer{
+            text-align:center;
+            padding:30px;
+            background:#0b0b0b;
+            border-top:1px solid #ff003322;
+            position:relative;
+            z-index:2;
+        }
+        footer a{
+            color:#ff0033;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="circuitCanvas"></canvas>
+
+<header>
+    <h1>Cámaras de Seguridad</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="galeria">
+        <div class="card">
+            <img src="camara1.webp" alt="Cámara 1">
+            <h3>Monitoreo Remoto</h3>
+            <p>Vigilancia desde el celular o PC, visión en vivo 24/7.</p>
+        </div>
+
+        <div class="card">
+            <img src="camara2.webp" alt="Cámara 2">
+            <h3>Domo 360°</h3>
+            <p>Rotación motorizada y seguimiento automático.</p>
+        </div>
+
+        <div class="card">
+            <img src="camara3.webp" alt="Cámara 3">
+            <h3>Detección Inteligente</h3>
+            <p>Alertas de movimiento y visión nocturna en HD.</p>
+        </div>
+    </section>
+
+    <a href="index.html" class="volver">← Volver al Inicio</a>
+</main>
+
+<footer>
+    <p>&copy; 2025 RedSir. Todos los derechos reservados. |
+        <a href="mailto:Redsir.enpresa@gmail.com">Contacto</a>
+    </p>
+</footer>
+
+<script>
+    // ANIMACIÓN DE PARTÍCULAS TIPO CIRCUITO (IGUAL A ILUMINARIAS, PERO ROJA)
+    const canvas = document.getElementById('circuitCanvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize',()=>{
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const num = 80;
+
+    for(let i=0;i<num;i++){
+        particles.push({
+            x:Math.random()*w,
+            y:Math.random()*h,
+            vx:(Math.random()-.5)*.4,
+            vy:(Math.random()-.5)*.4,
+            size:Math.random()*2+1
+        });
+    }
+
+    function draw(){
+        ctx.clearRect(0,0,w,h);
+        ctx.fillStyle = '#ff0033';
+
+        particles.forEach(p=>{
+            p.x+=p.vx; p.y+=p.vy;
+
+            if(p.x>w) p.x=0; if(p.x<0) p.x=w;
+            if(p.y>h) p.y=0; if(p.y<0) p.y=h;
+
+            ctx.beginPath();
+            ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+            ctx.fill();
+        });
+
+        ctx.strokeStyle='rgba(255,0,51,0.3)';
+        for(let i=0;i<particles.length;i++){
+            for(let j=i+1;j<particles.length;j++){
+                const dx=particles[i].x-particles[j].x;
+                const dy=particles[i].y-particles[j].y;
+                const dist=Math.sqrt(dx*dx + dy*dy);
+                if(dist<100){
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x,particles[i].y);
+                    ctx.lineTo(particles[j].x,particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(draw);
+    }
+    draw();
+</script>
+
+</body>
+</html>

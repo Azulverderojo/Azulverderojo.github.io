@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículum de Angeles Rosales - RedSir</title>
+
+    <!-- ORBITRON (agregado) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* RESET Y BASES */
+        * {margin:0; padding:0; box-sizing:border-box; font-family:'Arial', sans-serif;}
+        body {background-color:#111; color:#eee; line-height:1.6; overflow-x:hidden; position:relative;}
+        a {text-decoration:none; color:inherit; transition:all 0.3s ease;}
+        img {max-width:100%; display:block; border-radius:10px; transition: transform 0.5s ease, box-shadow 0.5s ease;}
+        h1,h2,h3{font-weight:700;}
+
+        /* APLICAR ORBITRON SOLO A TÍTULOS (cambio mínimo) */
+        h1, h2, h3 { font-family: 'Orbitron', sans-serif; }
+
+        /* COLOR VERDE OSCURO */
+        :root{
+            --blanco: #ccdbd5;
+            --blanco-trans: #798a8255;
+            --blanco-bg: #4f575320;
+        }
+
+        /* HEADER */
+        header.portada{
+            position: relative; text-align:center;
+            padding:80px 20px 40px 20px; overflow:hidden; z-index:1;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+        }
+        header.portada h1{font-size:3rem; color:var(--blanco); margin-bottom:20px; text-shadow:0 0 15px var(--blanco-trans);}
+        header.portada p{color:#ccc; margin-bottom:20px;}
+
+        nav ul {display:flex; justify-content:center; gap:30px; list-style:none; flex-wrap:wrap;}
+        nav li {font-size:1.2rem;}
+        nav li a {padding:8px 16px; border-radius:5px;}
+        nav li a:hover,
+        nav li a:focus {background-color:var(--blanco-bg); color:var(--blanco);}
+
+        /* MAIN */
+        main{padding:50px 20px; position:relative; z-index:1; max-width:1200px; margin:0 auto;}
+        section.curriculum{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; margin-bottom:80px;}
+
+        .card{
+            background:#1a1a1a; border-radius:15px; padding:20px; 
+            text-align:center; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover{transform:translateY(-10px); box-shadow:0 10px 30px var(--blanco-trans); color:var(--blanco);}
+        .card h2{margin:15px 0 10px 0; color:var(--blanco);}
+        .card p{font-size:0.95rem; color:#ccc;}
+
+        /* CORRECCIÓN TAMAÑO IMÁGENES */
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* BOTÓN VOLVER */
+        .volver{display:inline-block; margin:40px auto; padding:12px 24px; border-radius:8px; background:var(--blanco-bg); color:var(--blanco); font-weight:bold; transition:0.3s;}
+        .volver:hover{background:var(--blanco); color:#111; box-shadow:0 0 15px var(--blanco-trans);}
+
+        /* FOOTER */
+        footer{text-align:center; padding:30px 20px; background-color:#0d0d0d; border-top:1px solid var(--blanco-bg); color:#aaa; position:relative; z-index:1;}
+        footer a{color:var(--blanco);}
+
+        /* ANIMACIONES */
+        .fade-in, .slide-up, .zoom-in{opacity:0; transform:translateY(20px); transition: all 1s ease;}
+        .zoom-in{transform: scale(0.9);}
+        .visible{opacity:1; transform: translateY(0) scale(1);}
+
+        /* RESPONSIVE */
+        @media(max-width:768px){
+            header.portada{padding:60px 10px 30px 10px;}
+            header.portada h1{font-size:2.2rem;}
+        }
+
+        /* CANVAS PARTICULAS */
+        #circuitCanvas{
+            position:fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            z-index:0;
+            pointer-events:none;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="circuitCanvas"></canvas>
+
+<!-- HEADER -->
+<header class="portada fade-in"> 
+    <h1 class="slide-up">Currículum</h1>
+    <p class="slide-up">Conové mejor a nuestro equipo</p>
+<p class="slide-up">Get to know our team better.</p>
+
+    <nav aria-label="Menú principal">
+        <ul> 
+            <li><a href="index.html" class="fade-in">Inicio</a></li>
+            <!-- "Servicios" eliminado -->
+            <li><a href="nosotros.html" class="fade-in">Nosotros</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- MAIN -->
+<main>
+    <section class="curriculum fade-in">
+        <div class="card zoom-in">
+            <img src="foto-ejemplo.jpg" alt="Nombre del Miembro">
+            <h2>Angeles Rosales</h2>
+            <p><strong>Rol:</strong> Técnico en Electrónica.</p>
+            <p><strong>Dirección:</strong> Tanti.</p>
+            <p><strong>Fecha de nacimiento:</strong> 09/03/2007.</p>
+            <p><strong>Edad:</strong> 18 años.</p>
+            <p><strong>Estado civil:</strong> Soltero.</p>
+            <p><strong>Teléfono:</strong> 351 825 7778.</p>
+            <p><strong>Correo eléctronico:</strong> angyC@gmail.com </p>
+            <p><strong>Ciudad y código postal:</strong> Tanti, 5155.</p>
+            <p><strong>Experiencia:</strong> Atención al público, manejo de stock en Ferretería Argentina en Villa Carlos Paz(Octubre 2025). Trabajo en RedSir actualmente</p>
+            <p><strong>Habilidades:</strong> Programación (Arduino, CSS, HTML).Instalaciones eléctricas.</p>
+            <p><strong>Educación:</strong> Técnico Eléctronico titulado en el Ipetym Jorge Voscos Lescano N 84.</p>
+            <p><strong>Notas adicionales:</strong> Me destaco por mi creatividad, versatilidad en diferentes áreas y puntualidad. Soy responsable y cuento con liderazgo.</p>
+            <p><strong>Aficción:</strong> Estoy aprendiendo a usar la guitarra criolla. Dibujo con lápiz, carboncillo y tinta.</p>
+            <p><strong>Aspiraciones:</strong> Ser ingeniera industrial</p>
+
+            <h2>Angeles Rosales</h2>
+            <p><strong>Role:</strong> Electronics technical.</p>
+            <p><strong>Birthdate:</strong> March, 09, 2007.</p>
+            <p><strong>Address:</strong> Tanti.</p>
+            <p><strong>Age:</strong> 18 years old.</p>
+            <p><strong>Marital status:</strong> Single.</p>
+            <p><strong>Phone number:</strong> 351 825 7778.</p>
+            <p><strong>Email:</strong> angyC@gmail.com </p>
+            <p><strong>City and zip code:</strong> Tanti, 5155.</p>
+            <p><strong>Experience:</strong> Customer service, stock management in an Ferretería Argentina in Villa Carlos Paz (October 2025). I currently work in RedSir.</p>
+            <p><strong>Skills:</strong> Programming (Arduino, CSS, HTML) Electrical installations.</p>
+            <p><strong>Education:</strong> Electronic technician with a degree from Ipetym Jorge Voscos Lescano N 84.</p>
+            <p><strong>Aditional notes:</strong> I stand out for my creativity, versatility in different areas and punctuality. I am responsible and have leadership skills.</p>
+            <p><strong>Affliction:</strong> I am learning to play the Creole guitar. I draw with pencil, charcoal, and ink.</p>
+            <p><strong>Aspirations:</strong> I want to be an industrial engineer.</p>
+        </div>
+    </section>
+
+    <!-- Botón Volver -->
+    <div style="text-align:center;">
+        <a href="nosotros.html" class="volver slide-up">← Volver al Equipo</a>
+    </div>
+</main>
+
+<footer class="slide-up">
+    <p>&copy; 2025 RedSir. Todos los derechos reservados. | <a href="mailto:contacto@redsir.com">Contacto</a></p>
+</footer>
+
+<script>
+// Animaciones scroll
+const animados = document.querySelectorAll('.fade-in, .slide-up, .zoom-in');
+const mostrarAnimacion = (entrada) => {
+    entrada.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+};
+const observer = new IntersectionObserver(mostrarAnimacion, {threshold:0.2});
+animados.forEach(el => observer.observe(el));
+
+// PARTICULAS VERDE OSCURO
+const canvas = document.getElementById('circuitCanvas');
+const ctx = canvas.getContext('2d');
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
+
+window.addEventListener('resize', ()=>{
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+});
+
+const particles = [];
+const numParticles = 100;
+for(let i=0;i<numParticles;i++){
+    particles.push({
+        x:Math.random()*w,
+        y:Math.random()*h,
+        vx:(Math.random()-0.5)*0.5,
+        vy:(Math.random()-0.5)*0.5,
+        size: Math.random()*2+1
+    });
+}
+
+function draw(){
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle = 'rgba(225, 255, 255, 1)'; // líneas verdes
+    ctx.fillStyle = '#FFFFFF'; // partículas
+    particles.forEach(p=>{
+        p.x += p.vx;
+        p.y += p.vy;
+        if(p.x> w) p.x=0;
+        if(p.x<0) p.x=w;
+        if(p.y>h) p.y=0;
+        if(p.y<0) p.y=h;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+        ctx.fill();
+    });
+
+    for(let i=0;i<particles.length;i++){
+        for(let j=i;j<particles.length;j++){
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if(dist<100){
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x,particles[i].y);
+                ctx.lineTo(particles[j].x,particles[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+    requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>

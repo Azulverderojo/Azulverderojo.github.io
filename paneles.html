@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paneles Solares - RedSir</title>
+
+    <!-- TIPOGRAFÍA ORBITRON -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        *{margin:0; padding:0; box-sizing:border-box; font-family:'Orbitron', sans-serif;}
+        body{background:#111; color:#eee; overflow-x:hidden;}
+
+        :root{
+            --violeta:#9933ff;
+            --violeta-trans:#9933ff55;
+            --violeta-bg:#9933ff20;
+        }
+
+        img{max-width:100%; display:block; border-radius:15px; transition:.4s;}
+        img:hover{transform:scale(1.03); box-shadow:0 0 20px var(--violeta-trans);}
+
+        /* HEADER */
+        header.portada{
+            text-align:center;
+            padding:100px 20px 60px;
+            background:rgba(0,0,0,0.7);
+            position:relative;
+            z-index:2;
+        }
+        header.portada h1{
+            font-size:clamp(2rem,5vw,3.5rem);
+            color:var(--violeta);
+            margin-bottom:20px;
+            text-shadow:0 0 15px var(--violeta-trans);
+        }
+
+        nav ul{
+            display:flex;
+            justify-content:center;
+            gap:25px;
+            list-style:none;
+            flex-wrap:wrap;
+        }
+
+        nav a{
+            padding:8px 16px;
+            border-radius:5px;
+            font-size:1.1rem;
+            color:#eee;
+            text-decoration:none;
+            transition:.3s;
+        }
+        nav a:hover{background:var(--violeta-bg); color:var(--violeta);}
+
+        /* MAIN */
+        main{padding:50px 20px;}
+
+        section.intro{
+            text-align:center;
+            max-width:900px;
+            margin:auto;
+        }
+        section.intro h2{
+            font-size:clamp(1.8rem,4vw,2.7rem);
+            color:var(--violeta);
+            margin-bottom:15px;
+            text-shadow:0 0 15px var(--violeta-trans);
+        }
+
+        section.galeria{
+            display:grid;
+            gap:30px;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            margin-top:60px;
+        }
+
+        .card{
+            background:#1a1a1a;
+            padding:20px;
+            border-radius:15px;
+            text-align:center;
+            transition:.3s;
+        }
+        .card:hover{
+            transform:translateY(-8px);
+            box-shadow:0 10px 25px var(--violeta-trans);
+        }
+        .card h3{color:var(--violeta); margin:15px 0 10px;}
+        .card p{color:#ccc;}
+
+        /* BOTÓN */
+        .volver{
+            display:inline-block;
+            margin:60px auto;
+            padding:12px 24px;
+            background:var(--violeta-bg);
+            color:var(--violeta);
+            font-weight:bold;
+            border-radius:8px;
+            transition:.3s;
+        }
+        .volver:hover{background:var(--violeta); color:#111;}
+
+        /* FOOTER */
+        footer{
+            text-align:center;
+            padding:30px 20px;
+            background:#0d0d0d;
+            border-top:1px solid var(--violeta-bg);
+        }
+        footer a{color:var(--violeta);}
+
+        /* ANIMACIONES */
+        .fade-in,.slide-up,.zoom-in{opacity:0; transform:translateY(20px); transition:1s;}
+        .zoom-in{transform:scale(.9);}
+        .visible{opacity:1; transform:translateY(0) scale(1);}
+
+        /* FONDO DE PARTÍCULAS */
+        #circuitCanvas{
+            position:fixed;
+            top:0;left:0;
+            width:100vw; height:100vh;
+            z-index:0;
+            pointer-events:none;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="circuitCanvas"></canvas>
+
+<header class="portada fade-in">
+    <h1 class="slide-up">Paneles Solares</h1>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="fade-in">Inicio</a></li>
+            <li><a href="nosotros.html" class="fade-in">Nosotros</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="intro slide-up">
+        <h2>Paneles Solares RedSir</h2>
+        <p>Instalación de paneles solares con inversores y baterías de carga profunda, una alternativa limpia y eficiente para tu energía.</p>
+    </section>
+
+    <section class="galeria fade-in">
+        <div class="card zoom-in">
+            <img src="panel1.webp" alt="Panel solar para casas">
+            <h3>Residencial</h3>
+            <p>Soluciones solares eficientes para hogares, integradas con la red doméstica.</p>
+        </div>
+
+        <div class="card zoom-in">
+            <img src="panel2.webp" alt="Panel solar para comercios">
+            <h3>Comercial</h3>
+            <p>Instalaciones para negocios y edificios con monitoreo de rendimiento.</p>
+        </div>
+
+        <div class="card zoom-in">
+            <img src="panel3.jpg" alt="Panel solar industrial">
+            <h3>Industrial</h3>
+            <p>Sistemas robustos y escalables, diseñados para grandes demandas energéticas.</p>
+        </div>
+    </section>
+
+    <div style="text-align:center;">
+        <a href="index.html" class="volver slide-up">← Volver al Inicio</a>
+    </div>
+</main>
+
+<footer class="slide-up">
+    <p>&copy; 2025 RedSir. Todos los derechos reservados. |
+        <a href="mailto:Redsir.enpresa@gmail.com">Contacto</a>
+    </p>
+</footer>
+
+<script>
+    const animados = document.querySelectorAll('.fade-in, .slide-up, .zoom-in');
+    const observer = new IntersectionObserver((e)=>{
+        e.forEach(el=>{ if(el.isIntersecting) el.target.classList.add('visible'); });
+    }, {threshold:0.2});
+    animados.forEach(el=>observer.observe(el));
+
+    const canvas = document.getElementById('circuitCanvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize',()=>{
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const num = 80;
+
+    for(let i=0;i<num;i++){
+        particles.push({
+            x:Math.random()*w, y:Math.random()*h,
+            vx:(Math.random()-.5)*.4,
+            vy:(Math.random()-.5)*.4,
+            size:Math.random()*2+1
+        });
+    }
+
+    function draw(){
+        ctx.clearRect(0,0,w,h);
+        ctx.fillStyle = '#9933ff';
+
+        particles.forEach(p=>{
+            p.x+=p.vx; p.y+=p.vy;
+
+            if(p.x>w) p.x=0; if(p.x<0) p.x=w;
+            if(p.y>h) p.y=0; if(p.y<0) p.y=h;
+
+            ctx.beginPath();
+            ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+            ctx.fill();
+        });
+
+        ctx.strokeStyle='rgba(153,51,255,0.25)';
+        for(let i=0;i<particles.length;i++){
+            for(let j=i+1;j<particles.length;j++){
+                const dx=particles[i].x-particles[j].x;
+                const dy=particles[i].y-particles[j].y;
+                const dist=Math.sqrt(dx*dx+dy*dy);
+                if(dist<100){
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x,particles[i].y);
+                    ctx.lineTo(particles[j].x,particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(draw);
+    }
+    draw();
+</script>
+
+</body>
+</html>

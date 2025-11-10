@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RedSir Empresa</title>
+<link rel="icon" href="favicon.png" type="image/png">
+
+<!-- ORBITRON PARA TÍTULOS Y MENÚ -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* RESET Y BASES */
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Arial', sans-serif;}
+body {background-color:#111; color:#eee; line-height:1.6; overflow-x:hidden; position:relative;}
+a {text-decoration:none; color:inherit; transition:all 0.25s ease;}
+img {max-width:100%; display:block; border-radius:10px; transition: transform 0.45s ease, box-shadow 0.45s ease;}
+h1, h2, h3{font-weight:700; font-family:'Orbitron', sans-serif;} /* TITULOS = ORBITRON */
+
+/* HEADER */
+header.portada{
+ position: relative; text-align:center;
+ background:linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('portada.jpg') center/cover no-repeat;
+ padding:100px 20px 50px 20px;
+ overflow:hidden; z-index:1;
+}
+
+header.portada .logo{
+ width:180px;
+ border-radius:8px;
+ box-shadow:0 0 25px #00e6ffaa;
+ animation:flotar 3s ease-in-out infinite alternate;
+}
+
+@keyframes flotar {
+ from { transform:translateY(0); }
+ to { transform:translateY(-8px); }
+}
+
+header.portada h1{
+ font-size:3rem; color:#00e6ff; margin-bottom:20px; text-shadow:0 0 12px #00e6ff44;
+}
+
+/* MENÚ: misma tipografía que títulos, hover más suave */
+nav ul {display:flex; justify-content:center; gap:30px; list-style:none; flex-wrap:wrap;}
+nav li {font-size:1.15rem;}
+nav li a {
+  padding:10px 18px;
+  border-radius:6px;
+  font-family:'Orbitron', sans-serif; /* MENÚ = ORBITRON */
+  letter-spacing: 0.4px;
+  transition: background-color 200ms ease, color 200ms ease, box-shadow 200ms ease;
+}
+/* iluminación más suave y menos intrusiva */
+nav li a:hover, nav li a:focus {
+  background-color: rgba(0,230,255,0.06); /* muy sutil */
+  color: #00e6ff;
+  box-shadow: 0 0 8px rgba(0,230,255,0.10);
+  outline: none;
+}
+
+/* MAIN */
+main{padding:50px 20px; position:relative; z-index:1;}
+
+section.bienvenida{display:flex; flex-wrap:wrap; gap:40px; align-items:center; justify-content:center; margin-bottom:80px;}
+section.bienvenida .texto{flex:1 1 400px; max-width:760px;}
+/* QUITÉ la .imagen flotante: no está en el HTML ahora */
+
+section.servicios h2{text-align:center; margin-bottom:40px; color:#00e6ff; font-size:2.2rem; text-shadow:0 0 10px #00e6ff44;}
+
+.sistemas{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px;}
+
+.sistema{
+ background-color:#1a1a1a; padding:20px; border-radius:15px; text-align:center;
+ transition:transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+ cursor:pointer; display:block;
+}
+
+.sistema:hover, .sistema:focus{
+ transform: translateY(-8px);
+ box-shadow:0 10px 24px rgba(0,230,255,0.12);
+ color:#00e6ff;
+}
+
+.sistema h3{margin:15px 0 10px 0; color:#00e6ff; transition:text-shadow 0.35s ease;}
+.sistema:hover h3{text-shadow:0 0 14px #00e6ff66;}
+.sistema p{font-size:0.95rem; color:#ccc;}
+
+/* FOOTER */
+footer{text-align:center; padding:30px 20px; background-color:#0d0d0d; border-top:1px solid rgba(0,230,255,0.08); color:#ddd; position:relative; z-index:1;}
+footer a{color:#00e6ff;}
+
+/* ANIMACIONES (mantengo las tuyas) */
+.fade-in, .slide-up, .zoom-in{opacity:0; transform:translateY(20px); transition: all 1s ease;}
+.zoom-in{transform: scale(0.9);}
+.visible{opacity:1; transform: translateY(0) scale(1);}
+
+/* RESPONSIVE: mejoras para móvil (touch target, texto, paddings) */
+@media(max-width:1024px){
+  header.portada h1{font-size:2.6rem;}
+  nav li {font-size:1.05rem;}
+  nav li a {padding:10px 14px;}
+}
+@media(max-width:768px){
+ header.portada{padding:80px 12px 40px 12px;}
+ header.portada h1{font-size:2.2rem;}
+ section.bienvenida{flex-direction:column; gap:20px;}
+ nav ul{gap:16px;}
+}
+@media(max-width:480px){
+ header.portada h1{font-size:1.8rem;}
+ nav li a{font-size:0.95rem; padding:12px 10px;}
+ .sistema h3{font-size:1.05rem;}
+ .sistema p{font-size:0.9rem;}
+}
+
+/* CANVAS */
+#circuitCanvas{
+ position:fixed; top:0; left:0; width:100%; height:100%;
+ z-index:0; pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+<canvas id="circuitCanvas"></canvas>
+
+<header class="portada fade-in">
+ <img src="empresa.jpg" alt="Logo RedSir" class="logo zoom-in">
+ <h1 class="slide-up">RedSir</h1>
+
+ <!-- MENÚ: enlaces corregidos a index.html y nosotros.html -->
+ <nav aria-label="Menú principal">
+     <ul>
+         <li><a href="index.html" class="fade-in">Inicio</a></li>
+         <li><a href="nosotros.html" class="fade-in">Nosotros</a></li>
+     </ul>
+ </nav>
+</header>
+
+<main>
+ <section class="bienvenida">
+     <div class="texto slide-up">
+         <h2>Bienvenido a RedSir</h2>
+         <p>Somos técnicos electrónicos especializados en sistemas de seguridad: Cámaras de seguridad, sirenas, sensores de movimiento y temperatura. También instalamos paneles solares, automatización de iluminarias e instalaciones de redes.</p>
+     </div>
+     <!-- IMAGEN FLOTANTE QUITADA intencionalmente -->
+ </section>
+
+ <section class="servicios fade-in">
+     <h2 class="slide-up">Nuestros Servicios</h2>
+
+     <div class="sistemas">
+         <a href="camaras.html" class="sistema fade-in">
+             <img src="camarasdeseguridad.jpg" alt="Cámaras de seguridad">
+             <h3>Cámaras de seguridad</h3>
+             <p>Instalaciones alámbricas e inalámbricas.</p>
+         </a>
+
+         <a href="iluminarias.html" class="sistema fade-in">
+             <img src="lucesiluminarias.jpg" alt="Iluminarias">
+             <h3>Iluminarias</h3>
+             <p>Sistemas de iluminación adaptables.</p>
+         </a>
+
+         <a href="seguridad.html" class="sistema fade-in">
+             <img src="candadodeseguridad.jpg" alt="Sistema de seguridad">
+             <h3>Sistema de seguridad</h3>
+             <p>Sirenas, sensores, temperatura y humo.</p>
+         </a>
+
+         <a href="paneles.html" class="sistema fade-in">
+             <img src="panelsolar.jpg" alt="Paneles solares">
+             <h3>Paneles solares</h3>
+             <p>Instalación de paneles solares.</p>
+         </a>
+     </div>
+ </section>
+</main>
+
+<footer class="slide-up">
+ <p>&copy; 2025 RedSir. Todos los derechos reservados. | <a href="mailto:Redsir.enpresa@gmail.com">Contacto</a></p>
+</footer>
+
+<script>
+// Animaciones scroll
+const animados = document.querySelectorAll('.fade-in, .slide-up, .zoom-in');
+const mostrarAnimacion = (entrada) => {
+ entrada.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+};
+const observer = new IntersectionObserver(mostrarAnimacion, {threshold:0.2});
+animados.forEach(el => observer.observe(el));
+
+// Partículas (iguales a las tuyas)
+const canvas = document.getElementById('circuitCanvas');
+const ctx = canvas.getContext('2d');
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
+window.addEventListener('resize', ()=>{ w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; });
+
+const particles = [];
+const numParticles = 90;
+for(let i=0;i<numParticles;i++){
+ particles.push({ x:Math.random()*w, y:Math.random()*h, vx:(Math.random()-0.5)*0.5, vy:(Math.random()-0.5)*0.5, size: Math.random()*2+1 });
+}
+
+function draw(){
+ ctx.clearRect(0,0,w,h);
+ ctx.strokeStyle = '#00e6ff33';
+ ctx.fillStyle = '#00e6ff';
+
+ particles.forEach(p=>{
+     p.x += p.vx; p.y += p.vy;
+     if(p.x> w) p.x=0;
+     if(p.x<0) p.x=w;
+     if(p.y>h) p.y=0;
+     if(p.y<0) p.y=h;
+
+     ctx.beginPath();
+     ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+     ctx.fill();
+ });
+
+ for(let i=0;i<particles.length;i++){
+     for(let j=i+1;j<particles.length;j++){
+         const dx = particles[i].x - particles[j].x;
+         const dy = particles[i].y - particles[j].y;
+         const dist = Math.sqrt(dx*dx + dy*dy);
+         if(dist<70){
+             ctx.beginPath();
+             ctx.moveTo(particles[i].x,particles[i].y);
+             ctx.lineTo(particles[j].x,particles[j].y);
+             ctx.stroke();
+         }
+     }
+ }
+ requestAnimationFrame(draw);
+}
+draw();
+</script>
+
+</body>
+</html>
+

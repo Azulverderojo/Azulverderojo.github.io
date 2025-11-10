@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros - RedSir</title>
+
+    <!-- ORBITRON PARA TÍTULOS Y MENÚ -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {margin:0; padding:0; box-sizing:border-box; font-family:'Arial', sans-serif;}
+        body {background-color:#111; color:#eee; line-height:1.6; overflow-x:hidden; position:relative;}
+        a {text-decoration:none; color:inherit; transition:all 0.3s ease;}
+        img {max-width:100%; display:block; border-radius:10px; transition: transform 0.5s ease, box-shadow 0.5s ease;}
+
+        /* ✅ Orbitron en títulos y menú */
+        h1,h2,h3, nav li a {font-family:'Orbitron', sans-serif;}
+
+        :root{
+            --azul: #00e6ff;
+            --azul-trans: #00e6ff55;
+            --azul-bg: #00e6ff20;
+        }
+
+        header.portada{
+            position: relative; 
+            text-align:center;
+            padding:80px 20px 40px 20px; 
+            overflow:hidden; 
+            z-index:1;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+            border-bottom:1px solid var(--azul-bg);
+        }
+
+        /* ✅ LOGO HOLOGRÁFICO */
+        header.portada .logo{
+            width:180px; 
+            border-radius:8px;
+            margin-bottom:20px;
+            box-shadow:0 0 25px var(--azul-trans);
+            animation:flotar 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes flotar {
+            from { transform:translateY(0); }
+            to { transform:translateY(-8px); }
+        }
+
+        header.portada h1{font-size:3rem; color:var(--azul); margin-bottom:20px; text-shadow:0 0 15px var(--azul-trans);}
+        header.portada p{color:#ccc; margin-bottom:20px;}
+
+        /* ✅ HOVER MÁS SUAVE */
+        nav ul {display:flex; justify-content:center; gap:30px; list-style:none; flex-wrap:wrap;}
+        nav li {font-size:1.2rem;}
+        nav li a {padding:8px 16px; border-radius:5px; transition: color .3s ease, background .3s ease, text-shadow .3s ease;}
+        nav li a:hover,
+        nav li a:focus {background-color:var(--azul-bg); color:var(--azul); text-shadow:0 0 7px var(--azul-trans);}
+
+        main{padding:50px 20px; position:relative; z-index:1; max-width:1200px; margin:0 auto;}
+
+        section.equipo{
+            display:grid; 
+            grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); 
+            gap:30px; 
+            margin-bottom:60px;
+        }
+
+        .card{
+            background:#1a1a1a; 
+            border-radius:15px; 
+            padding:20px; 
+            text-align:center; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display:block;
+        }
+        .card:hover{
+            transform:translateY(-8px); 
+            box-shadow:0 10px 30px var(--azul-trans);
+        }
+        .card h2{margin:15px 0 10px 0; color:var(--azul);}
+        .card p{font-size:0.95rem; color:#ccc;}
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .volver{
+            display:inline-block; 
+            margin:40px auto; 
+            padding:12px 24px; 
+            border-radius:8px; 
+            background:var(--azul-bg); 
+            color:var(--azul); 
+            font-weight:bold; 
+            transition:0.3s;
+            font-family:'Orbitron', sans-serif;
+        }
+        .volver:hover{
+            background:var(--azul); 
+            color:#111; 
+            box-shadow:0 0 15px var(--azul-trans);
+        }
+
+        footer{
+            text-align:center; 
+            padding:30px 20px; 
+            background-color:#0d0d0d; 
+            border-top:1px solid var(--azul-bg); 
+            color:#aaa; 
+            position:relative; 
+            z-index:1;
+        }
+        footer a{color:var(--azul); font-family:'Orbitron', sans-serif;}
+
+        /* ANIMACIONES */
+        .fade-in, .slide-up, .zoom-in{
+            opacity:0; 
+            transform:translateY(20px); 
+            transition: all 1s ease;
+        }
+        .zoom-in{transform: scale(0.9);}
+        .visible{opacity:1; transform: translateY(0) scale(1);}
+
+        @media(max-width:768px){
+            header.portada{padding:60px 10px 30px 10px;}
+            header.portada h1{font-size:2.2rem;}
+        }
+
+        #circuitCanvas{
+            position:fixed;
+            top:0; 
+            left:0;
+            width:100%; 
+            height:100%;
+            z-index:0;
+            pointer-events:none;
+        }
+    </style>
+</head>
+
+<body>
+
+<canvas id="circuitCanvas"></canvas>
+
+<header class="portada fade-in"> 
+    <img src="RedSir.jpg" alt="Logo de RedSir" class="logo zoom-in">
+    <h1 class="slide-up">Equipo RedSir</h1>
+    <p class="slide-up">Conocé a los profesionales que hacen posible nuestro trabajo:</p>
+
+    <nav aria-label="Menú principal">
+        <ul> 
+            <li><a href="index.html" class="fade-in">Inicio</a></li>
+            <li><a href="personal.html" class="fade-in">Nosotros</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <section class="equipo fade-in">
+
+        <a href="angeles.html" class="card zoom-in">
+            <img src="codigo.jpg" alt="Foto de Angeles Rosales">
+            <h2>Angeles Rosales</h2>
+            <p>Técnica electrónica. Responsable de las programaciones y organización del grupo.</p>
+        </a>
+
+        <a href="esmeralda.html" class="card zoom-in">
+            <img src="tecnico.webp" alt="Foto de Esmeralda Marcone">
+            <h2>Esmeralda Marcone</h2>
+            <p>Técnica electrónica. Maneja la contabilidad e instala sensores de seguridad.</p>
+        </a>
+
+        <a href="luna.html" class="card zoom-in">
+            <img src="luz.webp" alt="Foto de Luna Tornquist">
+            <h2>Luna Tornquist</h2>
+            <p>Técnica electrónica. Especialista en iluminarias y trabajos eléctricos.</p>
+        </a>
+
+        <a href="naima.html" class="card zoom-in">
+            <img src="marketing.png" alt="Foto de Naima Pérez">
+            <h2>Naima Pérez</h2>
+            <p>Marketing. Diseña estrategias para expandir RedSir y conectar con clientes.</p>
+        </a>
+
+        <a href="gabriel.html" class="card zoom-in">
+            <img src="mantenimiento.jpg" alt="Foto de Gabriel Saires">
+            <h2>Gabriel Saires</h2>
+            <p>Técnico. Realiza mantenimiento priorizando la comodidad del cliente.</p>
+        </a>
+
+    </section>
+
+    <div style="text-align:center;">
+        <a href="index.html" class="volver slide-up">← Volver al Inicio</a>
+    </div>
+</main>
+
+<footer class="slide-up">
+    <p>&copy; 2025 RedSir. Todos los derechos reservados. | 
+        <a href="mailto:Redsir.enpresa@gmail.com">Contacto</a>
+    </p>
+</footer>
+
+<script>
+const animados = document.querySelectorAll('.fade-in, .slide-up, .zoom-in');
+const mostrarAnimacion = (entrada) => {
+    entrada.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+};
+const observer = new IntersectionObserver(mostrarAnimacion, {threshold:0.2});
+animados.forEach(el => observer.observe(el));
+
+const canvas = document.getElementById('circuitCanvas');
+const ctx = canvas.getContext('2d');
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
+
+window.addEventListener('resize', ()=>{
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+});
+
+const particles = [];
+const numParticles = window.innerWidth < 600 ? 60 : 120;
+
+for(let i=0;i<numParticles;i++){
+    particles.push({
+        x:Math.random()*w,
+        y:Math.random()*h,
+        vx:(Math.random()-0.5)*0.5,
+        vy:(Math.random()-0.5)*0.5,
+        size: Math.random()*2+1
+    });
+}
+
+function draw(){
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle = 'rgba(0,230,255,0.3)';
+    ctx.fillStyle = '#00e6ff';
+
+    particles.forEach(p=>{
+        p.x += p.vx;
+        p.y += p.vy;
+        if(p.x> w) p.x=0;
+        if(p.x<0) p.x=w;
+        if(p.y>h) p.y=0;
+        if(p.y<0) p.y=h;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+        ctx.fill();
+    });
+
+    for(let i=0;i<particles.length;i++){
+        for(let j=i;j<particles.length;j++){
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if(dist<100){
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x,particles[i].y);
+                ctx.lineTo(particles[j].x,particles[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+    requestAnimationFrame(draw);
+}
+draw();
+</script>
+
+</body>
+</html>
+
